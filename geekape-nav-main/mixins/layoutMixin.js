@@ -1,11 +1,11 @@
-import {mapState} from "vuex";
+import { mapState } from "vuex";
 import AppHeader from "../components/AppHeader";
 import AppNavMenus from "../components/AppNavMenus";
-import {isMobileSize, throttle} from "../utils/utils";
+import { isMobileSize, throttle } from "../utils/utils";
 
 const layoutMixin = {
-  components: {AppHeader, AppNavMenus},
-  data() {
+  components: { AppHeader, AppNavMenus },
+  data () {
     return {
       isCollapse: true,
       showPopup: false,
@@ -17,7 +17,7 @@ const layoutMixin = {
   computed: {
     ...mapState(['category']),
 
-    sideBarWidth() {
+    sideBarWidth () {
       if (this.showMenuType == 'half') {
         return '70px'
       } else if (this.showMenuType == 'all') {
@@ -26,7 +26,7 @@ const layoutMixin = {
         return 0
       }
     },
-    contentMarginLeft() {
+    contentMarginLeft () {
       if (this.showMenuType == 'half') {
         return '70px'
       } else if (this.showMenuType == 'all') {
@@ -41,19 +41,19 @@ const layoutMixin = {
     },
   },
   methods: {
-    async findNav(id) {
+    async findNav (id) {
       this.loading = true;
       const { data } = await this.$api.findNav(id);
       this.data = data;
       this.loading = false;
     },
-    async handleSubMenuClick(parentId, id) {
+    async handleSubMenuClick (parentId, id) {
       await this.findNav(parentId);
     },
-    toggleMenu() {
+    toggleMenu () {
       this.showMenuType = this.showMenuType === 'none' ? 'all' : 'none'
     },
-    toggleMenu2() {
+    toggleMenu2 () {
       this.showMenuType = this.showMenuType === 'all' ? 'half' : 'all'
     },
     handleResize: function (event) {
@@ -62,19 +62,19 @@ const layoutMixin = {
         if (innerWidth < 568) {
           this.showMenuType = 'none'
         } else {
-          this.showMenuType = 'half'
+          this.showMenuType = 'all'
         }
       } else {
         if (isMobileSize()) {
           this.showMenuType = 'none'
         } else {
-          this.showMenuType = 'half'
+          this.showMenuType = 'all'
         }
       }
     }
   },
 
-  mounted() {
+  mounted () {
     this.handleResize()
     window.onresize = throttle(this.handleResize.bind(this), 300)
 
