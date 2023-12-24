@@ -12,7 +12,7 @@
     <slot name="sidebar">
       <el-row>
         <el-col :span="24">
-          <el-menu class="el-menu-vertical-demo" background-color="#4700f1" text-color="#fff" active-text-color="#a27cff" :default-active="defaultActive" unique-opened :collapse="isCollapse">
+          <el-menu class="el-menu-vertical-demo" background-color="#d21366" text-color="#fff" active-text-color="#e0d6cd" :default-active="defaultActive" unique-opened :collapse="isCollapse">
             <el-submenu v-for="(item, index) in categorys" :key="item._id" :index="item._id" style="text-align: left">
               <template slot="title">
                 <i :class="item.icon ? item.icon : `el-icon-eleme icon-title`"></i>
