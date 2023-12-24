@@ -4,7 +4,7 @@
     <el-container class="body" :style="{ marginLeft: contentMarginLeft }">
       <AppHeader @handleShowPopup="showPopup = true" @handleShowMenu="toggleMenu" />
       <div class="main" v-loading="loading">
-        <affiche />
+        <!-- <affiche /> -->
         <nav-ranking-list :data="navRanking" />
 
         <div class="website-wrapper" v-for="item in data" :key="item.name">
@@ -15,7 +15,7 @@
     </el-container>
 
     <AddNavPopup :show.sync="showPopup" />
-    <CustomerServiceBtn @showLog="showLog = true" />
+    <!-- <CustomerServiceBtn @showLog="showLog = true" /> -->
     <AppLog :show="showLog" @closeLog="showLog = false" />
   </el-container>
 </template>
