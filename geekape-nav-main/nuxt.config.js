@@ -10,15 +10,15 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: "极客猿梦导航-专注独立开发者的导航站",
+    title: "瞧享办公导航-仅限内部使用",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "keyword", name: "description", content: "极客猿梦导航,导航站" },
+      { hid: "keyword", name: "description", content: "瞧享轻奢美甲美睫" },
       {
         hid: "description",
         name: "description",
-        content: "专注独立开发者的导航站"
+        content: "瞧享成为广大时尚女性美甲美睫的必选品牌，所有价格、操作流程、产品材质均以透明的展现方式给每一位客户，因此受到了客户的一致良好口碑。瞧享对品牌品质的坚守，不断提升提高服务与技术，在行业内迅速崛起，成为全国展露头角的新兴品牌，同时拥有自主生产美甲产品的源头工厂。"
       }
     ],
     link: [
@@ -77,14 +77,14 @@ module.exports = {
       target: 'http://localhost:3002/api', // 目标接口域名
       changeOrigin: true,
       pathRewrite: {
-        '^/api' : '/'
+        '^/api': '/'
       }
     },
     '/5a1Fazu8AA54nxGko9WTAnF6hhy': {
       target: 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy', // 目标接口域名
       changeOrigin: true,
       pathRewrite: {
-        '^/5a1Fazu8AA54nxGko9WTAnF6hhy' : '/'
+        '^/5a1Fazu8AA54nxGko9WTAnF6hhy': '/'
       }
     },
   },
@@ -100,7 +100,7 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {},
+    extend (config, ctx) { },
     vendor: ["axios"]
   },
 
