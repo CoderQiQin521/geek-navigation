@@ -1,17 +1,10 @@
 <template>
-  <el-aside
-    :style="{
+  <el-aside :style="{
       width: sideBarWidth,
-    }"
-  >
+    }">
     <nuxt-link class="title" to="/">
-      <img
-        v-show="!isCollapse"
-        class="icon-logo"
-        width="180"
-        src="/logo-nav.png"
-      />
-      <img v-show="isCollapse" class="icon-logo" width="45" src="/logo-nav-icon.png"/>
+      <img v-show="!isCollapse" class="icon-logo" width="180" src="/logo-nav.png" />
+      <img v-show="isCollapse" class="icon-logo" width="45" src="/logo-nav-icon.png" />
 
       <!-- <span>猿梦极客导航后台</span> -->
     </nuxt-link>
@@ -19,33 +12,13 @@
     <slot name="sidebar">
       <el-row>
         <el-col :span="24">
-          <el-menu
-            class="el-menu-vertical-demo"
-            background-color="#4700f1"
-            text-color="#fff"
-            active-text-color="#a27cff"
-            :default-active="defaultActive"
-            unique-opened
-            :collapse="isCollapse"
-          >
-            <el-submenu
-              v-for="(item, index) in categorys"
-              :key="item._id"
-              :index="item._id"
-              style="text-align: left"
-            >
+          <el-menu class="el-menu-vertical-demo" background-color="#4700f1" text-color="#fff" active-text-color="#a27cff" :default-active="defaultActive" unique-opened :collapse="isCollapse">
+            <el-submenu v-for="(item, index) in categorys" :key="item._id" :index="item._id" style="text-align: left">
               <template slot="title">
-                <i
-                  :class="item.icon ? item.icon : `el-icon-eleme icon-title`"
-                ></i>
+                <i :class="item.icon ? item.icon : `el-icon-eleme icon-title`"></i>
                 <span slot="title">{{ item.name }}</span>
               </template>
-              <el-menu-item
-                :index="`${index}-${idx}`"
-                v-for="(nav, idx) in item.children"
-                :key="nav._id"
-                @click="handleMenuItemClick(item._id, nav._id)"
-              >
+              <el-menu-item :index="`${index}-${idx}`" v-for="(nav, idx) in item.children" :key="nav._id" @click="handleMenuItemClick(item._id, nav._id)">
                 <a>
                   <i :class="nav.icon"></i>
                   <span slot="title">{{ nav.name }}</span>
@@ -60,10 +33,7 @@
     <div class="sidebar-fix">
       <ul>
         <li class="item" @click="$emit('showMenus')">
-          <i
-            class="el-icon-s-fold"
-            v-if="!isCollapse"
-          ></i>
+          <i class="el-icon-s-fold" v-if="!isCollapse"></i>
           <i class="el-icon-s-unfold" v-else></i>
         </li>
       </ul>
@@ -88,7 +58,7 @@ export default {
       default: 'half'
     }
   },
-  data() {
+  data () {
     return {
       dialogFormVisible: false,
       defaultActive: "0-0",
@@ -96,7 +66,7 @@ export default {
     };
   },
   computed: {
-    sideBarWidth() {
+    sideBarWidth () {
       if (this.showMenuType == 'half') {
         return '70px'
       } else if (this.showMenuType == 'all') {
@@ -105,12 +75,12 @@ export default {
         return 0
       }
     },
-    isCollapse() {
+    isCollapse () {
       return this.showMenuType === 'half'
     }
   },
   methods: {
-    handleMenuItemClick(parentId, id) {
+    handleMenuItemClick (parentId, id) {
       this.$store.commit('saveSeletedId', {
         parentId,
         id,
@@ -177,7 +147,7 @@ $sidebar-w: auto;
     /*滚动条里面小方块*/
     border-radius: 10px;
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
-    background: rgba($color-primary, .2);
+    background: rgba($color-primary, 0.2);
   }
 
   .el-menu--popup::-webkit-scrollbar-track,
@@ -202,9 +172,8 @@ $sidebar-w: auto;
     color: #fff;
   }
 
-
-  /deep/ .el-menu,
-  /deep/ .el-menu--collapse {
+  v::deep .el-menu,
+  v::deep .el-menu--collapse {
     border: 0;
   }
 

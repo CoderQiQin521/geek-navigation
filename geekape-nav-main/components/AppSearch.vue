@@ -9,14 +9,7 @@
     <!--      <el-tab-pane label="搜狗" name="sogou"></el-tab-pane>-->
     <!--    </el-tabs>-->
 
-
-    <el-autocomplete
-      v-model="state"
-      :fetch-suggestions="queryData"
-      :placeholder="placeholder"
-      @select="handleSelect"
-      suffix-icon="el-icon-search"
-    >
+    <el-autocomplete v-model="state" :fetch-suggestions="queryData" :placeholder="placeholder" @select="handleSelect" suffix-icon="el-icon-search">
       <template v-slot:prepend>
         <el-select v-model="searchType" class="search-type-box">
           <el-option label="站内" value="station"></el-option>
@@ -33,8 +26,8 @@
 
 <script>
 import axios from "../plugins/axios";
-import {API_NAV} from "../api";
-import {titleCase} from "../utils/utils";
+import { API_NAV } from "../api";
+import { titleCase } from "../utils/utils";
 
 const searchGather = {
   station: {
@@ -74,7 +67,7 @@ export default {
   props: {
 
   },
-  data() {
+  data () {
     return {
       restaurants: [],
       state: '',
@@ -83,21 +76,21 @@ export default {
     }
   },
   computed: {
-    placeholder() {
+    placeholder () {
       return searchGather[this.searchType]['placeholder']
     }
   },
   methods: {
-    queryData(query, cb) {
+    queryData (query, cb) {
       if (this.searchType === 'station') {
         this.queryStation(query, cb)
       } else {
         this.queryBaidu(query, cb)
       }
     },
-    async queryStation(query, cb) {
+    async queryStation (query, cb) {
       if (query !== '') {
-        const {data} = await axios.get(API_NAV + `?keyword=${query}`)
+        const { data } = await axios.get(API_NAV + `?keyword=${query}`)
         if (Array.isArray(data.data)) {
           const finalData = data.data.map(item => (item.value = item.name, item))
           cb(finalData)
@@ -106,18 +99,18 @@ export default {
         cb([])
       }
     },
-    async queryBaidu(query, cb) {
+    async queryBaidu (query, cb) {
       const res = await axios.get(`/5a1Fazu8AA54nxGko9WTAnF6hhy/su?&wd=${query}&cb=getJSONPData`)
       try {
         const data = eval(res)
-        const finalData = data.s.reduce((t, v) => [...t, {value: v}], [])
+        const finalData = data.s.reduce((t, v) => [...t, { value: v }], [])
         cb(finalData)
       } catch (e) {
         cb([])
       }
     },
 
-    handleSelect(item) {
+    handleSelect (item) {
       let url = ''
       if (this.searchType === 'station') {
         this.$router.push(`/nav/${item._id}`)
@@ -128,7 +121,7 @@ export default {
     },
   },
 
-  mounted() {
+  mounted () {
     window.getJSONPData = function (data) {
       return data;
     }
@@ -145,11 +138,12 @@ export default {
     width: 300px;
     border-right: 1px solid #eee;
   }
-  /deep/ .el-input-group__append, /deep/ .el-input-group__prepend {
+  v::deep .el-input-group__append,
+  v::deep .el-input-group__prepend {
     border: 0;
   }
 
-  /deep/ .el-input__inner {
+  v::deep .el-input__inner {
     border: 0;
     box-shadow: none;
     background: #f5f7fa;
@@ -159,23 +153,22 @@ export default {
     width: 80px;
   }
 
-  /deep/ .el-select .el-input.is-focus .el-input__inner {
+  v::deep .el-select .el-input.is-focus .el-input__inner {
     border-color: #dfe1e5;
-    box-shadow: 0 0 20px rgba(#000, .1);
+    box-shadow: 0 0 20px rgba(#000, 0.1);
   }
 }
 
 @media screen and (max-width: 568px) {
   .app-search {
-      display: none;
+    display: none;
   }
 }
 @media screen and (min-width: 569px) {
   .app-search {
-      display: block;
+    display: block;
   }
 }
-
 
 //
 //.app-search {
@@ -184,16 +177,16 @@ export default {
 //  flex-direction: column;
 //  align-items: center;
 //
-//  /deep/ .el-tabs__header,
-//  /deep/ .el-input__inner {
+//  v::deep .el-tabs__header,
+//  v::deep .el-input__inner {
 //    max-width: 600px;
 //    width: 600px;
 //    margin: auto;
 //  }
-//  /deep/ .el-tabs__nav-wrap::after {
+//  v::deep .el-tabs__nav-wrap::after {
 //    background-color: transparent;
 //  }
-//  /deep/ .el-input__inner {
+//  v::deep .el-input__inner {
 //    border-radius: 30px;
 //  }
 //  .el-tabs {

@@ -1,24 +1,16 @@
 <template>
   <el-container class="user-layout">
-    <AppNavMenus
-      @handleSubMenuClick="handleSubMenuClick"
-      :categorys="category"
-      :show-menu-type="showMenuType"
-      @showMenus="toggleMenu2"
-    />
+    <AppNavMenus @handleSubMenuClick="handleSubMenuClick" :categorys="category" :show-menu-type="showMenuType" @showMenus="toggleMenu2" />
     <el-container class="body" :style="{ marginLeft: contentMarginLeft }">
-      <AppHeader
-        @handleShowPopup="showPopup = true"
-        @handleShowMenu="toggleMenu"
-      />
+      <AppHeader @handleShowPopup="showPopup = true" @handleShowMenu="toggleMenu" />
       <div class="main" v-loading="loading">
         <affiche />
         <nav-ranking-list :data="navRanking" />
 
         <div class="website-wrapper" v-for="item in data" :key="item.name">
-            <p class="website-title" :id="item._id">{{ item.name }}</p>
-            <app-nav-list :list="item.list" />
-          </div>
+          <p class="website-title" :id="item._id">{{ item.name }}</p>
+          <app-nav-list :list="item.list" />
+        </div>
       </div>
     </el-container>
 
@@ -39,7 +31,7 @@ import AppLog from "../components/AppLog";
 import layoutMixin from "../mixins/layoutMixin";
 import NavRanking from "../components/NavRanking";
 import axios from "../plugins/axios";
-import {API_NAV_RANKING} from "../api";
+import { API_NAV_RANKING } from "../api";
 import NavRankingList from "../components/NavRankingList";
 import Affiche from "../components/Affiche";
 export default {
@@ -54,7 +46,7 @@ export default {
     AppSearch,
     AppNavList,
   },
-  data() {
+  data () {
     return {
       loading: false,
       active: "［前端］热门推荐",
@@ -71,7 +63,7 @@ export default {
   },
 
   methods: {
-    async getCategoryList() {
+    async getCategoryList () {
       const { data: categorys } = await this.$api.getCategoryList();
       this.categorys = categorys;
 
@@ -80,7 +72,7 @@ export default {
         this.findNav(categoryId);
       }
     },
-    dataScroll() {
+    dataScroll () {
       const that = this;
       let scrollTop =
         document.documentElement.scrollTop || document.body.scrollTop;
@@ -92,10 +84,10 @@ export default {
       }
     },
   },
-  mounted() {
+  mounted () {
     this.$store.commit('saveCategory', this.categorys)
   },
-  async asyncData({ store }) {
+  async asyncData ({ store }) {
     const [{ data: categorys }, { data: navRanking }] = await Promise.all([
       api.getCategoryList(),
       axios.get(API_NAV_RANKING)
@@ -114,7 +106,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 .el-container {
   flex-direction: column;
 }
@@ -128,7 +119,7 @@ export default {
     font-size: 14px;
     color: #999;
   }
-  /deep/ .el-submenu__title i {
+  v::deep .el-submenu__title i {
     color: #fff;
   }
 
@@ -137,8 +128,7 @@ export default {
   }
 }
 
-
-/deep/ .el-menu--popup-right-start {
+v::deep .el-menu--popup-right-start {
   height: 500px !important;
   overflow: auto;
 }
@@ -159,7 +149,6 @@ body {
   padding: 20px;
   position: relative;
 }
-
 
 .website-wrapper {
   .website-title {
