@@ -12,7 +12,7 @@ const Settings: LayoutSettings & {
   fixedHeader: false,
   fixSiderbar: true,
   colorWeak: false,
-  title: '极客猿导航',
+  title: '瞧享办公导航',
   pwa: false,
   logo: '/logo-icon.png',
   iconfontUrl: '',
