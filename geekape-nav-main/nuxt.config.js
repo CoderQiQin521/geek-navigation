@@ -5,7 +5,10 @@ module.exports = {
   env: {
     baseUrl: process.env.root
   },
-  server: {},
+  server: {
+    host: '0.0.0.0',
+    port: 3000
+  },
   /*`
    ** Headers of the page
    */
@@ -73,13 +76,13 @@ module.exports = {
   },
 
   proxy: {
-    '/api': {
-      target: 'http://localhost:3002/api', // 目标接口域名
-      changeOrigin: true,
-      pathRewrite: {
-        '^/api': '/'
-      }
-    },
+    // '/api': {
+    //   target: 'http://localhost:3002/api', // 目标接口域名
+    //   changeOrigin: true,
+    //   pathRewrite: {
+    //     '^/api': '/'
+    //   }
+    // },
     '/5a1Fazu8AA54nxGko9WTAnF6hhy': {
       target: 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy', // 目标接口域名
       changeOrigin: true,

@@ -1,0 +1,39 @@
+version: '3.9'
+services:
+  mongo:
+    image: mongo:latest
+    container_name: nav_mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data/db:/data/db
+    networks:
+      - nav_net
+  nav-web:
+    image: coderqiqin/nav_web:latest
+    container_name: nav_web
+    restart: always
+    environment:
+      - root=http://nav_server:3002
+    ports:
+      - 3000:3000
+    networks:
+      - nav_net
+    depends_on:
+      - nav_server
+  nav_server:
+    image: coderqiqin/nav-server:latest
+    container_name: nav_server
+    restart: always
+    environment:
+      - MONGO_URI=mongodb://nav_mongo:27017/navigation
+    ports:
+      - 3002:3002
+    networks:
+      - nav_net
+    depends_on:
+      - mongo
+networks:
+  nav_net:
+    driver: bridge

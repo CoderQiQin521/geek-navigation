@@ -94,7 +94,7 @@ export default {
     ])
 
 
-    const id = store.state.seletedMenuParentId || categorys[0]._id;
+    const id = store.state.seletedMenuParentId || categorys[0]?._id;
     const { data } = await api.findNav(id);
     return {
       categorys,
