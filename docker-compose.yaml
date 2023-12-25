@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3.3'
 services:
   mongo:
     image: mongo:latest
@@ -10,18 +10,6 @@ services:
       - ./data/db:/data/db
     networks:
       - nav_net
-  nav-web:
-    image: coderqiqin/nav_web:latest
-    container_name: nav_web
-    restart: always
-    environment:
-      - root=http://nav_server:3002
-    ports:
-      - 3000:3000
-    networks:
-      - nav_net
-    depends_on:
-      - nav_server
   nav_server:
     image: coderqiqin/nav-server:latest
     container_name: nav_server
@@ -34,6 +22,18 @@ services:
       - nav_net
     depends_on:
       - mongo
+  nav-web:
+    image: coderqiqin/nav_web:latest
+    container_name: nav_web
+    restart: always
+    environment:
+      - root=http://nav_server:3002
+    ports:
+      - 3000:3000
+    networks:
+      - nav_net
+    depends_on:
+      - nav_server
 networks:
   nav_net:
     driver: bridge
