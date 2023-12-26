@@ -1,7 +1,7 @@
 
 module.exports = {
-  // mode: "universal",
-  mode: "spa",
+  mode: "universal",
+  // mode: "spa",
   telemetry: false,
   env: {
     baseUrl: process.env.root
@@ -33,10 +33,10 @@ module.exports = {
       }
     ],
     script: [
-      {
-        src: "//v1.cnzz.com/z_stat.php?id=1279139494&web_id=1279139494",
-        defer: "defer"
-      }
+      // {
+      //   src: "//v1.cnzz.com/z_stat.php?id=1279139494&web_id=1279139494",
+      //   defer: "defer"
+      // }
     ]
   },
   /*
@@ -111,10 +111,10 @@ module.exports = {
   /*
    ** 服务器端中间件--针对首页做缓存
    */
-  // serverMiddleware: [
-  //   {
-  //     path: '/',
-  //     handler: '~/plugins/pageCache.js',
-  //   },
-  // ]
+  serverMiddleware: [
+    {
+      path: '/',
+      handler: '~/plugins/pageCache.js',
+    },
+  ]
 }

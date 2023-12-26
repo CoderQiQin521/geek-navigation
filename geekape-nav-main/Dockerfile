@@ -6,7 +6,7 @@ WORKDIR /app
 COPY . .
 
 # 安装依赖 & 打包
-RUN npm install pm2 -g && yarn && npm run build
+RUN npm install pm2 -g && yarn && npm run build && npm run generate
 
 
 # 暴漏端口
