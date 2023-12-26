@@ -45,6 +45,7 @@
           <el-button type="primary" :loading="loading" @click="addNav('ruleForm')">
             提交
           </el-button>
+          <el-link type="warning" disabled>提交后请等待后台审核</el-link>
         </el-form-item>
       </el-form>
     </el-card>
