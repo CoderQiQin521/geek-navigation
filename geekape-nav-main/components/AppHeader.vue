@@ -21,14 +21,14 @@
 import AppSearch from "./AppSearch";
 export default {
   name: "AppHeader",
-  components: {AppSearch},
+  components: { AppSearch },
   props: {
     dialogFormVisible: {
       type: Boolean,
       default: false
     }
   },
-  data() {
+  data () {
     return {
       searchType: 'station'
     }
@@ -49,7 +49,7 @@ export default {
   position: sticky;
   top: 0;
   z-index: 10;
-  box-shadow: 0px 1px 6px rgba(#000, .1);
+  box-shadow: 0px 1px 6px rgba(#000, 0.1);
 
   .arrow {
     flex: 1;
@@ -68,11 +68,10 @@ export default {
   }
 
   .header-logo {
-    width: 150px;
+    width: 70px;
     filter: invert(1);
   }
 }
-
 
 @media screen and (max-width: 568px) {
   .header-logo,
@@ -86,5 +85,4 @@ export default {
     display: none;
   }
 }
-
 </style>

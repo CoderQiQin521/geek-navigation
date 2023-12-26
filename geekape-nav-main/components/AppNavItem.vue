@@ -6,7 +6,7 @@
           <i class="iconfont icon-tiaozhuan"></i>
         </el-tooltip>
       </div>
-      <nuxt-link :to="`/nav/${navData._id}`" class="info" >
+      <nuxt-link :to="`/nav/${navData._id}`" class="info">
         <div class="info-header">
           <el-image class="logo" :src="navData.logo" fit="cover" lazy />
           <div class="info-header-right">
@@ -16,7 +16,6 @@
             </div>
           </div>
         </div>
-
 
       </nuxt-link>
       <div class="website-item__footer">
@@ -31,11 +30,7 @@
             <span class="iconfont icon-attentionfill"></span>
             {{ navData.view }}
           </span>
-          <span
-            class="website-item__icon"
-            :class="isStar && 'active'"
-            @click="handleNavStar"
-          >
+          <span class="website-item__icon" :class="isStar && 'active'" @click="handleNavStar">
             <span class="iconfont icon-appreciatefill"></span>
             {{ navData.star }}
           </span>
@@ -50,12 +45,12 @@ export default {
   props: {
     data: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
       }
     }
   },
-  data() {
+  data () {
     return {
       isStar: false,
       isView: false,
@@ -63,8 +58,8 @@ export default {
     };
   },
   methods: {
-    handleNavStar(navData) {
-      this.$emit('handleNavStar', this.navData, ()=> {
+    handleNavStar (navData) {
+      this.$emit('handleNavStar', this.navData, () => {
         this.navData.star += 1
         this.isStar = true
       })
@@ -74,7 +69,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 .website-item {
   font-size: 12px;
   margin-bottom: 20px;
@@ -94,13 +88,13 @@ export default {
     position: absolute;
     right: 20px;
     top: 10px;
-    display: none;
+    //display: none;
     z-index: 10;
   }
 
   &:hover {
     transform: translateY(-6px);
-    box-shadow: 0 26px 40px -24px rgba(#000, .2);
+    box-shadow: 0 26px 40px -24px rgba(#000, 0.2);
     transition: all 0.3s ease;
   }
   .wrap {
@@ -175,9 +169,6 @@ export default {
   justify-content: flex-start;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-
-
-
 
   &-header {
     display: flex;

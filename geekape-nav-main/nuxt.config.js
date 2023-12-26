@@ -1,6 +1,7 @@
 
 module.exports = {
-  mode: "universal",
+  // mode: "universal",
+  mode: "spa",
   telemetry: false,
   env: {
     baseUrl: process.env.root
@@ -71,8 +72,8 @@ module.exports = {
   ],
 
   axios: {
-    proxy: true, // 表示开启代理
-    credentials: true // 表示跨域请求时是否需要使用凭证
+    proxy: false, // 表示开启代理
+    credentials: false // 表示跨域请求时是否需要使用凭证
   },
 
   proxy: {

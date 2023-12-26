@@ -5,7 +5,7 @@
       <AppHeader @handleShowPopup="showPopup = true" @handleShowMenu="toggleMenu" />
       <div class="main" v-loading="loading">
         <!-- <affiche /> -->
-        <!-- <nav-ranking-list :data="navRanking" /> -->
+        <nav-ranking-list :data="navRanking" />
 
         <div class="website-wrapper" v-for="item in data" :key="item.name">
           <p class="website-title" :id="item._id">{{ item.name }}</p>
